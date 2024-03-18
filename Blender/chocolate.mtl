@@ -1,8 +1,8 @@
 # Blender 4.0.2 MTL File: 'chocolate.blend'
 # www.blender.org
 
-newmtl Chocolate_with_Nuts
-Ns 360.000000
+newmtl Book_cover_material
+Ns 250.000000
 Ka 1.000000 1.000000 1.000000
 Kd 0.800000 0.800000 0.800000
 Ks 0.500000 0.500000 0.500000
