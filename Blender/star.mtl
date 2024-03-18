@@ -1,12 +1,12 @@
 # Blender 4.0.2 MTL File: 'star.blend'
 # www.blender.org
 
-newmtl Material.001
-Ns 250.000000
-Ka 1.000000 1.000000 1.000000
-Kd 0.799999 0.594997 0.069835
+newmtl Gold.001
+Ka 0.404545 0.404545 0.404545
+Kd 0.800000 0.769451 0.681937
 Ks 0.500000 0.500000 0.500000
 Ke 0.000000 0.000000 0.000000
-Ni 1.450000
+Ni 2.000000
 d 1.000000
-illum 2
+illum 3
+map_Ns Gold_roughness.jpg
