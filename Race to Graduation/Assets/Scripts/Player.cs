@@ -50,7 +50,7 @@ public class Player : MonoBehaviour
 
         //Turn My game object that is set to false(off) to True(on).
        displayText.enabled = true;
-       displayText.text = "The pieces have been collected. Escape...While you still can...";
+       displayText.text = "The pieces have been collected. Claim your Diploma to escape...";
 
        yield return new WaitForSeconds(10);
 

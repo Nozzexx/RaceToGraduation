@@ -47,6 +47,7 @@ public class ExitCondition : MonoBehaviour
         playerPickUpCount = newPlayer.getPickUpCount();
         if(playerPickUpCount == playerPickUpTotal)
         {
+            
             return true;
         }
         else
@@ -71,6 +72,24 @@ public class ExitCondition : MonoBehaviour
        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
     }
+
+
+
+ private IEnumerator DiplomaFunction()
+    {
+        Debug.Log("I Got Here.");
+        //Wait for 5 sec.
+        
+        //Turn My game object that is set to false(off) to True(on).
+       displayText.enabled = true;
+       displayText.text ="You have not graduated...Find your diploma to escape...";
+
+       yield return new WaitForSeconds(3);
+        
+       displayText.enabled = false;
+
+    }
+
 
      private IEnumerator DenyFunction()
     {
