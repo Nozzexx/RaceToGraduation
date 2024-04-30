@@ -9,16 +9,24 @@ public class Player : MonoBehaviour
 {
      public int pickUpCount = 0;
      public int pickUpTotal = 10;
+     public bool diplomaFound = false;
      private bool displayEnd = false;
-
      public SurvivalStats stats;
-
      [SerializeField] public TMP_Text displayText;
+
+     public GameObject UIOFF;
+     public GameObject Exit;
 
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log(stats.Health.ToString());
+        Exit = GameObject.FindGameObjectWithTag("Exit").transform.GetChild(1).gameObject;
+
+      
+            UIOFF = GameObject.FindGameObjectWithTag("MainCamera").transform.GetChild(0).gameObject.transform.GetChild(3).gameObject;
+
+            UIOFF.SetActive(false);
     }
 
     // Update is called once per frame
@@ -40,6 +48,15 @@ public class Player : MonoBehaviour
             stats = gameObject.GetComponent<SurvivalStats>();
         }
 
+        if(pickUpCount == pickUpTotal)
+        {
+            Exit.SetActive(true);
+        }
+
+        if(UIOFF.activeInHierarchy)
+        {
+            UIOFF.SetActive(false);
+        }
         
     }
 

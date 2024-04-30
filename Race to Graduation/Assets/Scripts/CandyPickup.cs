@@ -6,15 +6,17 @@ using UnityEngine;
 
 public class CandyPickup : MonoBehaviour
 {
-
      [SerializeField] public TMP_Text pickUpText;
      [SerializeField] public Player newPlayer;
+
+     public AudioClip candyPickUpClip;
+
+    public AudioSource source;
 
     void Start()
     {
         pickUpText = GameObject.Find("Text (TMP)").GetComponent<TMP_Text>();
-        //newPlayer = GameObject.Find("Player");
-        //playerPickUpCount = GameObject.Find("Player").GetComponent<Player>().pickUpCount;
+        source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -35,12 +37,26 @@ public class CandyPickup : MonoBehaviour
     private void OnTriggerEnter(Collider other) 
     {
         
-
-        newPlayer.GetComponent<SUPERCharacterAIO>().walkingSpeed += 25;
-        newPlayer.GetComponent<SUPERCharacterAIO>().sprintingSpeed += 25;
-        newPlayer.GetComponent<SUPERCharacterAIO>().s_regenerationSpeed += .5f;
+        StartCoroutine(CandyPickupSound());
 
         StartCoroutine(CandyFunction());
+        
+    }
+
+     private IEnumerator CandyPickupSound()
+    {
+        Debug.Log("I Got Here.");
+        //Wait for 5 sec.
+
+      this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
+        
+      source.PlayOneShot(candyPickUpClip, 1f);
+
+      newPlayer.GetComponent<SUPERCharacterAIO>().walkingSpeed += 25;
+      newPlayer.GetComponent<SUPERCharacterAIO>().sprintingSpeed += 25;
+      newPlayer.GetComponent<SUPERCharacterAIO>().s_regenerationSpeed += .5f;
+
+       yield return new WaitForSeconds(0.5f);
         
     }
 
@@ -51,9 +67,9 @@ public class CandyPickup : MonoBehaviour
         
         //Turn My game object that is set to false(off) to True(on).
        pickUpText.enabled = true;
-       pickUpText.text = "You have found Candy, your speed has improved.";
+       pickUpText.text = "You have found Candy, your speed and stamina have improved.";
 
-       yield return new WaitForSeconds(2);
+       yield return new WaitForSeconds(1);
         
        pickUpText.enabled = false;
        this.gameObject.SetActive(false);

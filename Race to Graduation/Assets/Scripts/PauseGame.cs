@@ -12,6 +12,11 @@ public class PauseGame : MonoBehaviour {
             Pause();
         }
 
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            quitGame();
+        }
+
         if(canvas == null)
         {
            canvas = GameObject.Find("PauseMenu");
@@ -31,4 +36,10 @@ public class PauseGame : MonoBehaviour {
             Time.timeScale = 1;       
         }
     }
+
+     public void quitGame()
+   {
+        Debug.Log("Game Quit.");
+        Application.Quit();
+   }
 }

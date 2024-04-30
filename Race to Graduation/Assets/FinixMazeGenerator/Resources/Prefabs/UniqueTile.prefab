@@ -151,6 +151,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 4752669052201084486, guid: 9d8ba378fef6e4f4da06e7b804292465, type: 3}
+      propertyPath: chaseClip
+      value: 
+      objectReference: {fileID: 8300000, guid: fbb4509aa3cd247488848fcd4c77bc30, type: 3}
     - target: {fileID: 5348517517275689871, guid: 9d8ba378fef6e4f4da06e7b804292465, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

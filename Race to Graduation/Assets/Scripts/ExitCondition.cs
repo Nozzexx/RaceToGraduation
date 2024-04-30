@@ -45,10 +45,15 @@ public class ExitCondition : MonoBehaviour
     {
         playerPickUpTotal = newPlayer.getPickUpTotal();
         playerPickUpCount = newPlayer.getPickUpCount();
-        if(playerPickUpCount == playerPickUpTotal)
+        if(playerPickUpCount >= playerPickUpTotal && newPlayer.diplomaFound == true)
         {
             
             return true;
+        }
+        else if (playerPickUpCount >= playerPickUpTotal && newPlayer.diplomaFound == false)
+        { 
+            StartCoroutine(DiplomaFunction());
+            return false;
         }
         else
         {
@@ -82,7 +87,7 @@ public class ExitCondition : MonoBehaviour
         
         //Turn My game object that is set to false(off) to True(on).
        displayText.enabled = true;
-       displayText.text ="You have not graduated...Find your diploma to escape...";
+       displayText.text ="You have not graduated...Claim your diploma to escape...";
 
        yield return new WaitForSeconds(3);
         
@@ -98,7 +103,7 @@ public class ExitCondition : MonoBehaviour
         
         //Turn My game object that is set to false(off) to True(on).
        displayText.enabled = true;
-       displayText.text ="You do not have enough comet shards to escape...";
+       displayText.text ="You do not have enough comet shards or a diploma to escape...";
 
        yield return new WaitForSeconds(3);
         

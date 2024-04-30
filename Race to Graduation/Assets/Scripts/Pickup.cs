@@ -10,12 +10,17 @@ public class Pickup : MonoBehaviour
      [SerializeField] public Player newPlayer;
      [SerializeField] public int playerPickUpCount = 0;
     [SerializeField] public int playerPickUpTotal;
+
+    public AudioClip starPickUpClip;
+
+    public AudioSource source;
+
     // Start is called before the first frame update
+
     void Start()
     {
         pickUpText = GameObject.Find("PickupText").GetComponent<TMP_Text>();
-        //newPlayer = GameObject.Find("Player");
-        //playerPickUpCount = GameObject.Find("Player").GetComponent<Player>().pickUpCount;
+        source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -32,16 +37,38 @@ public class Pickup : MonoBehaviour
             playerPickUpTotal = GameObject.Find("Player").GetComponent<Player>().pickUpTotal;
         }
 
-        if(playerPickUpCount == playerPickUpTotal)
-        {
-            this.gameObject.SetActive(false); 
-        }
+    }
+
+     private IEnumerator pickupSound()
+    {
+        Debug.Log("I Got Here.");
+        //Wait for 5 sec.
+        
+      source.PlayOneShot(starPickUpClip, 1f);
+
+      this.gameObject.GetComponent<SphereCollider>().enabled = false;
+
+      playerPickUpCount = newPlayer.setPickUpCount();
+      pickUpText.text = (playerPickUpCount.ToString() + " / " + playerPickUpTotal.ToString());
+
+       yield return new WaitForSeconds(0.5f);
+        
+    }
+
+    private IEnumerator StarFunction()
+    {
+        Debug.Log("I Got Here.");
+        //Wait for 5 sec.
+
+       yield return new WaitForSeconds(1);
+        
+       this.gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other) 
     {
-        this.gameObject.SetActive(false);
-        playerPickUpCount = newPlayer.setPickUpCount();
-        pickUpText.text = (playerPickUpCount.ToString() + " / " + playerPickUpTotal.ToString());
+        StartCoroutine(pickupSound());
+        StartCoroutine(StarFunction());
+
     }
 }
